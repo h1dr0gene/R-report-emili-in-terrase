@@ -1,0 +1,42 @@
+---
+title: "Emily in Terasse"
+output: html_document
+date: "2026-1-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library, include=FALSE}
+library(tidyverse) #for data cleaning
+library(ggplot2)  #for plot
+```
+
+```{r Dataset, include=FALSE}
+ds <- read_csv2(file = "terrasses-autorisations.csv" )
+```
+
+# Emily in terasse
+
+## Brief introduction to the French tradition of terrasse 
+
+<p> "Aller en terrasse" is the tradition for the French. The fact of going to drink and eat some snacks in an outdoor place. 
+It could look casual but it is a fundamental social institution and a cornerstone of the French art de vivre.
+It brings people from different horizons all in the same place. It's a real social place for French people who 
+like to spend time there. It's very unique and very different from other European cultures. 
+These terraces are often closed in winter and reopen in summer. This makes us able to 
+count the number of terraces open every year and so, to perform this cultural data analysis </p>
+
+
+# The terasse from Paris 
+
+```{r Dataset cleaning and map, include=FALSE}
+ds_map <- ds %>% separate(geo_point_2d, into = c("lat", "lng"), sep = ", ") %>%
+  mutate(
+    lat = as.numeric(lat),
+    lng = as.numeric(lng)
+  )
+```
+
+
